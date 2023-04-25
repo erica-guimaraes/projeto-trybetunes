@@ -19,9 +19,6 @@ class Album extends React.Component {
     const { match: { params: { id } } } = this.props;
     let musicApi = await getMusics(id);
     musicApi = musicApi.filter((music) => music.trackName);
-    // console.log(musicApi);
-    // const musicas = musicApi.filter((music) => music.wrapperType === track);
-    // console.log(musicApi);
     this.setState({
       musics: musicApi,
       artistName: musicApi[0].artistName,
@@ -41,10 +38,13 @@ class Album extends React.Component {
         </div>
         <div>
           {musics.map((music, index) => (
-            <MusicCard
-              key={ index }
-              { ...music }
-            />
+            <div key={ index }>
+              <MusicCard
+                musics={ music.trackId }
+                musics2={ music.previewUrl }
+                trackName={ music.trackName }
+              />
+            </div>
           ))}
         </div>
 
